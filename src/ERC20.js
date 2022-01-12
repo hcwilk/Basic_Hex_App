@@ -55,8 +55,6 @@ export const init = async () => {
 	isInitialized = true;
 
 
-
-	console.log("MINTER",ShareMinter.methods)
 	
 
 };

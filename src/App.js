@@ -163,7 +163,6 @@ const fetchAddress = () => {
 				<div>
 					Time :: {time}
 				</div>
-	
 				<div>
 					Address :: {address}
 				</div>
