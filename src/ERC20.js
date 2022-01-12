@@ -55,7 +55,7 @@ export const init = async () => {
 
 	isInitialized = true;
 
-	console.log(erc20Contract.methods)
+	// console.log(erc20Contract.methods)
 
 
 

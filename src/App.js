@@ -5,16 +5,14 @@ import {Popup, Button} from 'semantic-ui-react'
 import {Popup as Popup2} from 'reactjs-popup' 
 
 
-
 // you already know that literally all of the code possible is going to go in this doc
 function App() {
 	const [balance, setBalance] = useState(null);
   	const [stakes, setStakes] = useState(null);
   	const [address, setAddress] = useState(null);
-
 	const [shares, setShares] = useState('')
 	const [time, setTime] = useState('')
-	const [list, setList] = useState(null)
+	// const [list, setList] = useState(null)
 
 
 
@@ -53,7 +51,21 @@ const fetchAddress = () => {
 const fetchList = () => {
 	stakedDays(0)
 		.then((list) => {
-			setList(list)
+			console.log(list)
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+		stakedHearts(0)
+		.then((list) => {
+			console.log(list)
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+		stakeIds(0)
+		.then((list) => {
+			console.log(list)
 		})
 		.catch((err) => {
 			console.log(err);
@@ -90,7 +102,6 @@ const fetchList = () => {
 		}
 
 		
-		console.log("What's up", list)
 
 		return <>
 		<br/>
@@ -181,18 +192,8 @@ const fetchList = () => {
 		  
 		</article>
 
-		<div>
-			stake Hearts : {list}
-		</div>
-
-
-
-
-
 
 		</>
-
-
 	  };
 
 
