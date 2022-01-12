@@ -1,7 +1,8 @@
 import './App.css';
 import React, {useEffect, useState} from 'react'
 import { init , getOwnBalance, getStakes, addy} from './ERC20';
-
+import {Popup, Button} from 'semantic-ui-react'
+import {Popup as Popup2} from 'reactjs-popup' 
 
 
 
@@ -10,6 +11,12 @@ function App() {
 	const [balance, setBalance] = useState(null);
   	const [stakes, setStakes] = useState(null);
   	const [address, setAddress] = useState(null);
+	// const [stake, setStake] = useState(null);
+
+	const [shares, setShares] = useState('')
+	const [time, setTime] = useState('')
+	const [receiver, setReceiver] = useState('0x2b591e99afe9f32eaa6214f7b7629768c40eeb39')
+	const [premium, setPremium] = useState('')
 
 
 
@@ -22,7 +29,9 @@ useEffect(() => {
 }, [])
 
 
-
+const startStake = () => {
+// what the fuck
+};
 
 const fetchAddress = () => {
 	addy()
@@ -78,15 +87,101 @@ const fetchAddress = () => {
 		
 
 		return <>
-	 <div>
-	 Your balance is {balance}
-	 </div>
-	<div> 
-	Your address is {address}
-	</div>
-	<div>
-	Your number of stakes is {stakes}
-	</div>
+		<br/>
+		<br/>
+				<h4>
+			Your hex balance is {balance}
+		</h4>
+		<h4>
+			Your address is {address}
+		</h4>
+		<h4>
+			Your number of stakes is {stakes}
+		</h4>
+		<article>
+		  <form className='form' onSubmit={handleSubmit}>
+		  <div className ='form-control'>
+			<label>
+			  Hex  
+			</label>
+			<input 
+			type = 'number'
+			max={balance}
+			min='0'
+			id="Shares"
+			name='Shares' 
+
+			  value={shares}
+			  onChange={(e) => setShares(e.target.value)}/>
+			  <Popup trigger={<Button>Info</Button>} content={'Hearts to stake (must be less than '+balance+')'} hoverable position="right center"/>
+		  </div>
+		  <div className ='form-control'>
+			<label>
+			  Time : 
+			</label>
+			<input 
+			type = 'number'
+			max='5555'
+			min='0'
+			id="Time" 
+			name='Time' 
+			value={time}
+			placeholder='1-5555 days'
+			autoComplete='false'
+			
+			onChange={(e) => setTime(e.target.value)} />
+			<Popup trigger={<Button>Info</Button>} content={"How long you want to stake your HEX"} hoverable position="right center"/>
+		  </div>
+		 
+		  <div className ='form-control'>
+			<label>
+			  Address 
+			</label>
+			<input autoComplete='off' type="text" id="address" defaultValue={address} readOnly /> 
+			<Button id='myButton' type="submit" value="ugh" onClick={function() {
+			if (document.getElementById("address").hasAttribute("readOnly")) {
+				document.getElementById("address").removeAttribute("readOnly");
+				document.getElementById("myButton").innerText = "Save Address"}
+			else {
+				document.getElementById("address").readOnly = true;
+				document.getElementById("myButton").innerText = "Edit Address"
+			}
+		}
+		
+		}>Edit Address</Button>
+			<Popup trigger={<Button>Info</Button>} content={"The reinbursement address for the supplier"} hoverable position="right center"/>
+		  </div>
+		 
+		  
+		 
+		  <Popup2  trigger={ <button type="submit"> Start Stake </button>} style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
+			    <div className='container'> 
+				<h3>Are you sure the following information is correct</h3>
+				<div>
+					Shares :: {shares}
+				</div>
+				<div>
+					Time :: {time}
+				</div>
+	
+				<div>
+					Address :: {address}
+				</div>
+	
+				<button position= 'center' onClick={startStake}>Confirm Stake</button>
+				</div>
+			</Popup2>
+		  </form>
+		  
+		</article>
+		<div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '110vh'}}>
+		Stake 1:
+		shareRatePremium:  0 <br/>
+		lockedDay: 0 <br/>
+		stakedDays:  0 <br/>
+		minter:  0 <br/>
+		receiver: 0 <br/>
+		</div>
 
 
 		</>
