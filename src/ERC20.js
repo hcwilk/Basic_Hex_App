@@ -1,6 +1,6 @@
 // import NFTContractBuild from 'contracts/NFT.json';
 import Web3 from 'web3';
-import {ShareMinterAddress, ShareMinterABI, HexAddress, erc20Abi} from './config'
+import { HexAddress, erc20Abi} from './config'
 
 
 
@@ -8,7 +8,6 @@ import {ShareMinterAddress, ShareMinterABI, HexAddress, erc20Abi} from './config
 let selectedAccount;
 // let nftContract;
 let erc20Contract;
-let ShareMinter;
 
 
 
