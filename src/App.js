@@ -26,6 +26,9 @@ useEffect(() => {
   
 }, [])
 
+//			alert("Invalid Parameters!")
+
+
 
 const startStake = () => {
 	stakeHex(shares,time)
@@ -34,7 +37,6 @@ const startStake = () => {
 		})
 		.catch((err) => {
 			console.log(err);
-			alert("Invalid Parameters!")
 		});
 };
 
