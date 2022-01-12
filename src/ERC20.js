@@ -54,10 +54,7 @@ export const init = async () => {
 
 	isInitialized = true;
 
-	ShareMinter = new web3.eth.Contract(
-		ShareMinterABI,
-		ShareMinterAddress
-	);
+
 
 	console.log("MINTER",ShareMinter.methods)
 	
@@ -69,24 +66,9 @@ export const addy = async () => {
 	if (!isInitialized) {
 		await init();
 	}
-
-
-
 	return selectedAccount;
 }
 
-export const Contract = async (prem,rec,add,sha,days) => {
-
-	if (!isInitialized) {
-		await init();
-	}
-
-
-
-	return ShareMinter.methods
-		.mintShares(prem*10,rec,add,sha,days)
-		.send({from:selectedAccount});
-}
 
 
 export const getOwnBalance = async () => {
@@ -117,28 +99,9 @@ export const getStakes = async () => {
 }
 
 
-export const startStake = async () => {
-	if (!isInitialized) {
-		await init();
-	}
-	return ShareMinter.methods
-	.mintShares().call().then
-}
 
 
-export const viewStake = async () => {
-	if (!isInitialized) {
-		await init();
-	}
-	return ShareMinter.methods
-	.stakes(0)
-	.call()
-	.then((stake) => {
-		const yeah = [stake.shareRatePremium, stake.lockedDay, stake.stakedDays, stake.minter, stake.receiver]
-		console.log(yeah)
-		return yeah;
-	})
-}
+
 
 
 
