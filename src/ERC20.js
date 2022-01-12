@@ -46,6 +46,7 @@ export const init = async () => {
 
 
 
+
 	erc20Contract = new web3.eth.Contract(
 		erc20Abi,
 		// Hex contract on Mainnet
@@ -53,6 +54,9 @@ export const init = async () => {
 	);
 
 	isInitialized = true;
+
+	console.log(erc20Contract.methods)
+
 
 
 	
@@ -94,6 +98,55 @@ export const getStakes = async () => {
 	.then((count) => {
 		return count;
 	});
+}
+
+
+
+export const stakeIds = async (number) => {
+	if (!isInitialized) {
+		await init();
+	}
+	return erc20Contract.methods
+	.stakeLists(selectedAccount,number)
+	.call()
+	.then((stake) => {
+		return stake.stakeId;
+	});
+}
+
+export const stakedHearts = async (number) => {
+	if (!isInitialized) {
+		await init();
+	}
+	return erc20Contract.methods
+	.stakeLists(selectedAccount,number)
+	.call()
+	.then((stake) => {
+		return stake.stakedHearts;
+	});
+}
+
+
+export const stakedDays = async (number) => {
+	if (!isInitialized) {
+		await init();
+	}
+	return erc20Contract.methods
+	.stakeLists(selectedAccount,number)
+	.call()
+	.then((stake) => {
+		return stake.stakedDays;
+	});
+}
+
+export const stakeHex = async (shares,days) => {
+
+	if (!isInitialized) {
+		await init();
+	}
+	return erc20Contract.methods
+		.stakeStart(shares,days)
+		.send({from:selectedAccount});
 }
 
 

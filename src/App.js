@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useEffect, useState} from 'react'
-import { init , getOwnBalance, getStakes, addy} from './ERC20';
+import { init , getOwnBalance, getStakes, addy, stakeIds, stakedDays, stakedHearts, stakeHex} from './ERC20';
 import {Popup, Button} from 'semantic-ui-react'
 import {Popup as Popup2} from 'reactjs-popup' 
 
@@ -11,17 +11,17 @@ function App() {
 	const [balance, setBalance] = useState(null);
   	const [stakes, setStakes] = useState(null);
   	const [address, setAddress] = useState(null);
-	// const [stake, setStake] = useState(null);
 
 	const [shares, setShares] = useState('')
 	const [time, setTime] = useState('')
-	const [receiver, setReceiver] = useState('0x2b591e99afe9f32eaa6214f7b7629768c40eeb39')
-	const [premium, setPremium] = useState('')
+	const [list, setList] = useState(null)
+
 
 
 
 useEffect(() => {
   init()
+  fetchList()
   fetchHexBalance()
   fetchStakes()
   fetchAddress()
@@ -30,7 +30,14 @@ useEffect(() => {
 
 
 const startStake = () => {
-// what the fuck
+	stakeHex(shares,time)
+		.then((contract) => {
+			console.log(contract);
+		})
+		.catch((err) => {
+			console.log(err);
+			alert("Invalid Parameters!")
+		});
 };
 
 const fetchAddress = () => {
@@ -43,15 +50,15 @@ const fetchAddress = () => {
 		});
 };
 
-// const fetchStake = () => {
-// 	viewStake()
-// 		.then((stake) => {
-// 			setStake(stake)
-// 		})
-// 		.catch((err) => {
-// 			console.log(err);
-// 		});
-// };
+const fetchList = () => {
+	stakedDays(0)
+		.then((list) => {
+			setList(list)
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+};
 
 
 	const fetchHexBalance = () => {
@@ -67,7 +74,7 @@ const fetchAddress = () => {
 	const fetchStakes = () => {
 		getStakes()
 		.then((stakes) => {
-			setStakes(stakes);
+				setStakes(stakes);
 		})
 		.catch((err) => {
 			console.log(err);
@@ -77,14 +84,13 @@ const fetchAddress = () => {
 		  e.preventDefault();
 		  console.log("SHARES",shares)
 		  console.log("TIME", time)
-		  console.log("RECEIVER", receiver)
 		  console.log("ADDY", address)
-		  console.log("PREm", premium)
 
 	  
 		}
 
 		
+		console.log("What's up", list)
 
 		return <>
 		<br/>
@@ -166,6 +172,7 @@ const fetchAddress = () => {
 				<div>
 					Address :: {address}
 				</div>
+
 	
 				<button position= 'center' onClick={startStake}>Confirm Stake</button>
 				</div>
@@ -174,9 +181,18 @@ const fetchAddress = () => {
 		  
 		</article>
 
+		<div>
+			stake Hearts : {list}
+		</div>
+
+
+
+
 
 
 		</>
+
+
 	  };
 
 
