@@ -173,14 +173,7 @@ const fetchAddress = () => {
 		  </form>
 		  
 		</article>
-		<div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '110vh'}}>
-		Stake 1:
-		shareRatePremium:  0 <br/>
-		lockedDay: 0 <br/>
-		stakedDays:  0 <br/>
-		minter:  0 <br/>
-		receiver: 0 <br/>
-		</div>
+
 
 
 		</>
