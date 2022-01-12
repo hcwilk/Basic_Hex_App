@@ -10,12 +10,6 @@ function App() {
 	const [balance, setBalance] = useState(null);
   	const [stakes, setStakes] = useState(null);
   	const [address, setAddress] = useState(null);
-	// const [stake, setStake] = useState(null);
-
-	const [shares, setShares] = useState('')
-	const [time, setTime] = useState('')
-	const [receiver, setReceiver] = useState('0x2b591e99afe9f32eaa6214f7b7629768c40eeb39')
-	const [premium, setPremium] = useState('')
 
 
 
