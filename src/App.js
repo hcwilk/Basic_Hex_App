@@ -114,12 +114,12 @@ const fetch_stake = () => {
 		let Time_Error
 		if ((shares >= balance+1||shares == '' || shares==0)&&(time >= 5556||time == ''||time==0)){
 			Share_Error = <div>Your proposed staked HEX must be greater than 0 and below {balance}</div>
-			Time_Error = <div>Time must be between 0 and 5556 days</div>
+			Time_Error = <div>Stake Length must be between 0 and 5556 days</div>
 			is_Valid = false;
 		
 		} 
 		else if (time >= 5556||time == ''){
-			Time_Error = <div>Time must be between 0 and 5556 days</div>
+			Time_Error = <div>Stake Length must be between 0 and 5556 days</div>
 			Share_Error = <div> </div>
 			is_Valid = false;
 		} 
