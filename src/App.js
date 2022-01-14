@@ -39,8 +39,8 @@ useEffect(() => {
 
 const startStake = () => {
 	stakeHex(shares,time)
-		.then((contract) => {
-			console.log(contract);
+		.then((result) => {
+			console.log(result);
 		})
 		.catch((err) => {
 			console.log(err);
@@ -58,9 +58,7 @@ const fetchAddress = () => {
 };
 
 const fetch_stake = () => {
-	console.log("running");
 	for (var i = 0; i < stakes; i++) {
-		console.log("Yes")
 		whole_stake(i)
 		.then((stake) => {
 			list_of_stakes.push(stake);
@@ -108,23 +106,22 @@ const fetch_stake = () => {
 		}
 
 		let is_Valid=true;
-		let count = 0;
 
 		let Share_Error
 		let Time_Error
-		if ((shares >= balance+1||shares == '' || shares==0)&&(time >= 5556||time == ''||time==0)){
-			Share_Error = <div>Your proposed staked HEX must be greater than 0 and below {balance}</div>
-			Time_Error = <div>Time must be between 0 and 5556 days</div>
+		if ((shares >= balance+1||shares === '' || shares===0||shares%1!==0)&&(time >= 5556||time === ''||time===0||time%1!==0)){
+			Share_Error = <div>Your proposed staked HEX must be an integer greater than 0 and below {balance}</div>
+			Time_Error = <div>Time must be an integer between 0 and 5556 days</div>
 			is_Valid = false;
 		
 		} 
-		else if (time >= 5556||time == ''){
-			Time_Error = <div>Time must be between 0 and 5556 days</div>
+		else if (time >= 5556||time === ''||time%1!==0){
+			Time_Error = <div>Time must be an integer 	between 0 and 5556 days</div>
 			Share_Error = <div> </div>
 			is_Valid = false;
 		} 
-		else if (shares >= balance+1||shares == '' || shares==0){
-			Share_Error = <div> You proposed staked HEX has to be greater than 0 and below {balance}</div>
+		else if (shares >= balance+1||shares === '' || shares===0||shares%1!==0){
+			Share_Error = <div> You proposed staked HEX must be an integer greater than 0 and below {balance}</div>
 			Time_Error = <div>	 </div>
 			is_Valid = false;
 		} 
