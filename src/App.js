@@ -306,7 +306,7 @@ const fetch_stake = () => {
 
 
 		</Popups>
-	<button onClick={staks}>
+	<button className='stakes-button' onClick={staks}>
 		Stakes</button>
 		
 		</>

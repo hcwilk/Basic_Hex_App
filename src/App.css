@@ -58,6 +58,16 @@ input .smaller {
   padding: .5rem;
 }
 
+.stakes-button {
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  width: 40%;
+  padding: .5rem;
+  margin-left: 20px;
+  margin-bottom: 50px;
+}
+
 .App {
   text-align: center;
 }
