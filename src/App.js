@@ -109,7 +109,6 @@ const fetch_stake = () => {
 
 		let Share_Error
 		let Time_Error
-<<<<<<< HEAD
 		if ((shares >= balance+1||shares === '' || shares===0||shares%1!==0)&&(time >= 5556||time === ''||time===0||time%1!==0)){
 			Share_Error = <div>Your proposed staked HEX must be an integer greater than 0 and below {balance}</div>
 			Time_Error = <div>Time must be an integer between 0 and 5556 days</div>
@@ -118,16 +117,6 @@ const fetch_stake = () => {
 		} 
 		else if (time >= 5556||time === ''||time%1!==0){
 			Time_Error = <div>Time must be an integer 	between 0 and 5556 days</div>
-=======
-		if ((shares >= balance+1||shares == '' || shares==0)&&(time >= 5556||time == ''||time==0)){
-			Share_Error = <div>Your proposed staked HEX must be greater than 0 and below {balance}</div>
-			Time_Error = <div>Stake Length must be between 0 and 5556 days</div>
-			is_Valid = false;
-		
-		} 
-		else if (time >= 5556||time == ''){
-			Time_Error = <div>Stake Length must be between 0 and 5556 days</div>
->>>>>>> 2a97f34289b6dbcd2b9a31baf9031bfd8ec5ccb5
 			Share_Error = <div> </div>
 			is_Valid = false;
 		} 
@@ -320,7 +309,6 @@ const fetch_stake = () => {
 		</Popups>
 	<button className='stakes-button' onClick={staks}>
 		Stakes</button>
-		
 		</>
 	  };
 
