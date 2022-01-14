@@ -201,9 +201,9 @@ const fetch_stake = () => {
 				<br></br> <br></br>
 				<text1> HEX Address</text1> <input className='smaller' value={HexAddress} readOnly></input>
 				<br></br> <br></br>
-				<text1> HEX to Stake</text1> <input className='smaller' value={shares} readOnly></input>
+				<text1> HEX to Stake</text1> <input className='smaller' value={shares/1} readOnly></input>
 				<br></br> <br></br>
-				<text1> Days to Stake</text1> <input className='smaller' value={time} readOnly></input>
+				<text1> Days to Stake</text1> <input className='smaller' value={time/1} readOnly></input>
 			</p>
 		</div>
 		
