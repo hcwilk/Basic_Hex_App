@@ -1,3 +1,63 @@
+
+
+header {
+  background-color: rgb(61, 4, 119);
+  color: white;
+  font-weight: 400;
+  font-size: 30pt;
+  text-align: center;
+}
+
+h2 {
+  margin-left: 20px;
+}
+
+h4 {
+  width: 50%;
+}
+
+
+div .userInputs {
+  width: 50%;
+  margin-right: 0;
+  float: left;
+  margin-bottom: 100px;
+}
+
+div .inputBox {
+  width: 45%;
+  float: right;
+  margin-right: 10px;
+  border: .2rem solid black;
+  margin-bottom: 100px;
+}
+
+a { color: black; font-size: 20pt;}
+
+form1 { display: table; margin-left: 20px;  width: 100%;}
+
+p { display: table-row;}
+
+text { display: table-cell; padding-right: 1rem; color: gray; font-size: inherit;  font-weight: 200; margin-left: 30px;}
+
+text1 {padding-right: 1rem; color: black; font-size: 15px;  font-weight: 350;  margin-left: 5px; margin-bottom: 1rem;}
+
+input { display: table-cell; width: 80%; border-width: .1rem; padding-left: 5px; padding: .5rem;}
+
+input .smaller {
+  float: right;
+}
+
+::placeholder { color: black; font-size: inherit;}
+
+.stake-button {
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  width: 80%;
+  padding: .5rem;
+}
+
 .App {
   text-align: center;
 }
