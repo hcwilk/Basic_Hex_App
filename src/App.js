@@ -14,14 +14,8 @@ function App() {
 	const [time, setTime] = useState('');
 	const [button, setButton] = useState(false);
 	const [stakeButton, setstakeButton] = useState(false)
-	const [stakeIds] = useState([]);
-	const [stakeHearts] = useState([]);
-	const [stakeDays] = useState([]);
 	const [list_of_stakes] = useState([]);
 	
-
-
-
 
 useEffect(() => {
   init()
@@ -67,9 +61,7 @@ const fetch_stake = () => {
 		whole_stake(i)
 		.then((stake) => {
 			list_of_stakes.push(stake);
-			stakeIds.push(stake.stakeId)
-			stakeHearts.push(stake.stakedHearts)
-			stakeDays.push(stake.stakedDays)
+
 
 			// console.log(stake)
 		})
@@ -80,8 +72,6 @@ const fetch_stake = () => {
 
 
 };
-
-
 
 
 	const fetchHexBalance = () => {
@@ -96,9 +86,7 @@ const fetch_stake = () => {
 
 	const staks = () => {
 		console.log(list_of_stakes)
-		console.log(stakeIds)
-		console.log(stakeHearts)
-		console.log(stakeDays)
+
 		setstakeButton(true);
 	}
 
@@ -213,24 +201,6 @@ const fetch_stake = () => {
 			<Popup trigger={<Button>Info</Button>} content={"How long you want to stake your HEX"} hoverable position="right center"/>
 		  </div>
 		 
-		  {/* <div className ='form-control'>
-			<label>
-			  Address 
-			</label>
-			<input autoComplete='off' type="text" id="address" defaultValue={address} readOnly /> 
-			<Button id='myButton' type="submit" value="ugh" onClick={function() {
-			if (document.getElementById("address").hasAttribute("readOnly")) {
-				document.getElementById("address").removeAttribute("readOnly");
-				document.getElementById("myButton").innerText = "Save Address"}
-			else {
-				document.getElementById("address").readOnly = true;
-				document.getElementById("myButton").innerText = "Edit Address"
-			}
-		}
-		
-		}>Edit Address</Button>
-			<Popup trigger={<Button>Info</Button>} content={"The reinbursement address for the supplier"} hoverable position="right center"/>
-		  </div> */}
 
 		  <button onClick={() => 
 			  setButton(true)
@@ -238,23 +208,7 @@ const fetch_stake = () => {
 		 
 		  
 		 
-		  {/* <Popup2  trigger={ <button type="submit"> Start Stake </button>} style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
-			    <div className='container'> 
-				<h3>Are you sure the following information is correct</h3>
-				<div>
-					Shares :: {shares}
-				</div>
-				<div>
-					Time :: {time}
-				</div>
-				<div>
-					Address :: {address}
-				</div>
-
-	
-				<button position= 'center' onClick={startStake}>Confirm Stake</button>
-				</div>
-			</Popup2> */}
+		 
 		  </form>
 		  
 		</article>
@@ -267,17 +221,13 @@ const fetch_stake = () => {
 				<h3> Invalid Parameters </h3>
 			}
 			
-	
-			
 			<div>
 				{Share_Error}
 				</div>
 				<div>
 				{Time_Error}
 				</div>
-				{/* <div>
-					Address :: {address}
-				</div> */}
+
 
 			{ is_Valid?
 				<button position= 'center' onClick={startStake}>Confirm Stake</button>:
@@ -306,19 +256,14 @@ const fetch_stake = () => {
 					End Stake
 				</button>
 
-
 				<br/>
-				
-				
 				</>)
 			)}
 		</Popups>
 	<button onClick={staks}>
 		Stakes</button>
 
-
-		</>
-	  };
+		</>};
 
 
 export default App;
