@@ -1,8 +1,7 @@
 import './App.css';
 import React, {useEffect, useState, Component} from 'react'
-import { init , getOwnBalance, getStakes, addy} from './ERC20';
+import { init , getOwnBalance, getStakes, addy, whole_stake, stakeHex, endStake} from './ERC20';
 import {Popup, Button} from 'semantic-ui-react'
-import {Popup as Popup2} from 'reactjs-popup' 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import {FormControl, InputGroup} from 'react-bootstrap';
@@ -184,7 +183,7 @@ const fetch_stake = () => {
 
 				<br></br>
 
-				<button className='stake-button' type='submit'>Stake</button>
+				<button className='stake-button' type='submit' onClick={() => setButton(true)}>Stake</button>
 
 			</form1>
 		</div>
@@ -209,6 +208,32 @@ const fetch_stake = () => {
 			What's Up Bitches! This is where a sick description of what hex staking is and how much money you can make until you are just filthy rich!!!!
 		</h4>
 
+		
+
+		<Popups trigger = {button} setTrigger = {setButton}>
+			{
+				is_Valid?
+				<h3> Verify Your Information </h3>:
+				<h3> Invalid Parameters </h3>
+			}
+			
+			<div>
+				{Share_Error}
+				</div>
+				<div>
+				{Time_Error}
+				</div>
+
+
+			{ is_Valid?
+				<button position= 'center' onClick={startStake}>Confirm Stake</button>:
+				""
+			}
+		</Popups>
+
+
+
+		<Popups trigger = {stakeButton} setTrigger = {setstakeButton}>
 		<Table striped bordered hover>
 			<thead>
 				<tr>
@@ -222,25 +247,40 @@ const fetch_stake = () => {
 				</tr>
 			</thead>
 			<tbody>
+				
+				
+				{list_of_stakes.map((stake) => ( <> 
 				<tr>
-					<td>1</td>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
+
+				<td>
+					Stake ID : {stake.stakeId}
+				</td>
+				<td>
+					Staked Hearts : {stake.stakedHearts}
+				</td>
+				<td>
+					Stake Days : {stake.stakedDays}
+				</td>
+				<td>
+					number in list : {stake.stakeId-list_of_stakes[0].stakeId}
+				</td>
+
+				<button onClick={() => endStake(stake.stakeId-list_of_stakes[0].stakeId,stake.stakeId)}>
+					End Stake
+				</button>
 				</tr>
-				<tr>
-					<td>2</td>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td colSpan={2}>Larry the Bird</td>
-					<td>@twitter</td>
-				</tr>
+
+
+				
+				</>)
+			)}
+				
 			</tbody>
 		</Table>
+
+		</Popups>
+	<button onClick={staks}>
+		Stakes</button>
 		
 		</>
 	  };
