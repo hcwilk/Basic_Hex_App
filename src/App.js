@@ -253,17 +253,24 @@ const fetch_stake = () => {
 				<tr>
 
 				<td>
-					Stake ID : {stake.stakeId}
+				{stake.stakeId-list_of_stakes[0].stakeId}
 				</td>
 				<td>
-					Staked Hearts : {stake.stakedHearts}
+					{stake.stakeId}
 				</td>
 				<td>
-					Stake Days : {stake.stakedDays}
+					{stake.stakedHearts}
 				</td>
 				<td>
-					number in list : {stake.stakeId-list_of_stakes[0].stakeId}
+					{stake.stakedDays}
 				</td>
+				<td>
+					{stake.lockedDay}
+				</td>
+				<td>
+					{stake.lockedDay+stake.stakedDays}
+				</td>
+
 
 				<button onClick={() => endStake(stake.stakeId-list_of_stakes[0].stakeId,stake.stakeId)}>
 					End Stake
