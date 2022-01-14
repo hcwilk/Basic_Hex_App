@@ -38,7 +38,7 @@ useEffect(() => {
 
 
 const startStake = () => {
-	stakeHex(shares,time)
+	stakeHex(shares/1,time/1)
 		.then((result) => {
 			console.log(result);
 		})
@@ -126,8 +126,8 @@ const fetch_stake = () => {
 			is_Valid = false;
 		} 
 		else {
-			Share_Error = <div> You are about to stake {shares} HEX </div>
-			Time_Error = <div> You are about to stake for {time} days </div>
+			Share_Error = <div> You are about to stake {shares/1} HEX </div>
+			Time_Error = <div> You are about to stake for {time/1} days </div>
 
 			is_Valid = true;
 
@@ -298,14 +298,9 @@ const fetch_stake = () => {
 
 	<div> YOU have no stakes </div>
 		
-
 		}
 			
 		
-		
-			
-
-
 		</Popups>
 	<button className='stakes-button' onClick={staks}>
 		Stakes</button>
