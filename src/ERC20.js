@@ -1,4 +1,3 @@
-// import NFTContractBuild from 'contracts/NFT.json';
 import Web3 from 'web3';
 import { HexAddress, erc20Abi} from './config'
 
@@ -6,7 +5,6 @@ import { HexAddress, erc20Abi} from './config'
 
 
 let selectedAccount;
-// let nftContract;
 let erc20Contract;
 
 
@@ -40,7 +38,7 @@ export const init = async () => {
 
 	
 	const networkId = await web3.eth.net.getId();
-	console.log(networkId)
+	// console.log(networkId)
 
 
 
@@ -100,8 +98,7 @@ export const getStakes = async () => {
 }
 
 
-
-export const stakeIds = async (number) => {
+export const whole_stake = async (number) => {
 	if (!isInitialized) {
 		await init();
 	}
@@ -109,34 +106,21 @@ export const stakeIds = async (number) => {
 	.stakeLists(selectedAccount,number)
 	.call()
 	.then((stake) => {
-		return stake.stakeId;
+		return stake;
 	});
 }
 
-export const stakedHearts = async (number) => {
+export const endStake = async (index,id) => {
+
 	if (!isInitialized) {
 		await init();
 	}
 	return erc20Contract.methods
-	.stakeLists(selectedAccount,number)
-	.call()
-	.then((stake) => {
-		return stake.stakedHearts;
-	});
+		.stakeEnd(index,id)
+		.send({from:selectedAccount});
 }
 
 
-export const stakedDays = async (number) => {
-	if (!isInitialized) {
-		await init();
-	}
-	return erc20Contract.methods
-	.stakeLists(selectedAccount,number)
-	.call()
-	.then((stake) => {
-		return stake.stakedDays;
-	});
-}
 
 export const stakeHex = async (shares,days) => {
 

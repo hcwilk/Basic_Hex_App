@@ -1,8 +1,8 @@
 import './App.css';
 import React, {useEffect, useState} from 'react'
-import { init , getOwnBalance, getStakes, addy, stakeIds, stakedDays, stakedHearts, stakeHex} from './ERC20';
+import { init , getOwnBalance, getStakes, addy, whole_stake, stakeHex, endStake} from './ERC20';
 import {Popup, Button} from 'semantic-ui-react'
-import {Popup as Popup2} from 'reactjs-popup' 
+import Popups from './Components/Popups'
 
 
 // you already know that literally all of the code possible is going to go in this doc
@@ -10,23 +10,33 @@ function App() {
 	const [balance, setBalance] = useState(null);
   	const [stakes, setStakes] = useState(null);
   	const [address, setAddress] = useState(null);
-	const [shares, setShares] = useState('')
-	const [time, setTime] = useState('')
-	// const [list, setList] = useState(null)
+	const [shares, setShares] = useState('');
+	const [time, setTime] = useState('');
+	const [button, setButton] = useState(false);
+	const [stakeButton, setstakeButton] = useState(false)
+	const [stakeIds] = useState([]);
+	const [stakeHearts] = useState([]);
+	const [stakeDays] = useState([]);
+	const [list_of_stakes] = useState([]);
+	
 
 
 
 
 useEffect(() => {
   init()
-  fetchList()
   fetchHexBalance()
   fetchStakes()
   fetchAddress()
   
 }, [])
 
-//			alert("Invalid Parameters!")
+useEffect(() => {
+	fetch_stake()
+}, [stakes])
+
+
+
 
 
 
@@ -50,29 +60,28 @@ const fetchAddress = () => {
 		});
 };
 
-const fetchList = () => {
-	stakedDays(0)
-		.then((list) => {
-			console.log(list)
+const fetch_stake = () => {
+	console.log("running");
+	for (var i = 0; i < stakes; i++) {
+		console.log("Yes")
+		whole_stake(i)
+		.then((stake) => {
+			list_of_stakes.push(stake);
+			stakeIds.push(stake.stakeId)
+			stakeHearts.push(stake.stakedHearts)
+			stakeDays.push(stake.stakedDays)
+
+			// console.log(stake)
 		})
 		.catch((err) => {
 			console.log(err);
 		});
-		stakedHearts(0)
-		.then((list) => {
-			console.log(list)
-		})
-		.catch((err) => {
-			console.log(err);
-		});
-		stakeIds(0)
-		.then((list) => {
-			console.log(list)
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+	  }
+
+
 };
+
+
 
 
 	const fetchHexBalance = () => {
@@ -85,6 +94,27 @@ const fetchList = () => {
 			});
 	};
 
+	const staks = () => {
+		console.log(list_of_stakes)
+		console.log(stakeIds)
+		console.log(stakeHearts)
+		console.log(stakeDays)
+		setstakeButton(true);
+	}
+
+	const end_stake = (index,id) => {
+		endStake(index,id)
+		.then((follow) => {
+			console.log(follow)
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+
+	}
+
+
+
 	const fetchStakes = () => {
 		getStakes()
 		.then((stakes) => {
@@ -95,13 +125,44 @@ const fetchList = () => {
 		})
 	};
 		const handleSubmit = (e) => {
+		
 		  e.preventDefault();
-		  console.log("SHARES",shares)
-		  console.log("TIME", time)
-		  console.log("ADDY", address)
-
-	  
 		}
+
+
+
+		let is_Valid=true;
+
+		let Share_Error
+		if (shares >= balance+1){
+			Share_Error = <div>Your prposed staked HEX exceeds your current balance</div>
+			is_Valid = false;
+		
+		} else if (shares == ''){
+			Share_Error = <div> HEX to stake must be greater than 0</div>
+			is_Valid = false;
+		}
+		else {
+			Share_Error = <div> You are about to stake {shares} HEX </div>
+		}
+
+		let Time_Error
+		if (time >= 5556 ){
+			Time_Error = <div>Time must be between 0 and 5556 days</div>
+			is_Valid = false;
+		} 
+		else if (time == ''){
+			Time_Error = <div> Value must be greater than 0</div>
+			is_Valid = false;
+		} 
+		else {
+			Time_Error = <div> You are about to stake for {time} days </div>
+		}
+
+
+
+
+
 
 		
 
@@ -152,7 +213,7 @@ const fetchList = () => {
 			<Popup trigger={<Button>Info</Button>} content={"How long you want to stake your HEX"} hoverable position="right center"/>
 		  </div>
 		 
-		  <div className ='form-control'>
+		  {/* <div className ='form-control'>
 			<label>
 			  Address 
 			</label>
@@ -169,11 +230,15 @@ const fetchList = () => {
 		
 		}>Edit Address</Button>
 			<Popup trigger={<Button>Info</Button>} content={"The reinbursement address for the supplier"} hoverable position="right center"/>
-		  </div>
+		  </div> */}
+
+		  <button onClick={() => 
+			  setButton(true)
+		  }>Stake</button>
 		 
 		  
 		 
-		  <Popup2  trigger={ <button type="submit"> Start Stake </button>} style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
+		  {/* <Popup2  trigger={ <button type="submit"> Start Stake </button>} style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100vh'}}>
 			    <div className='container'> 
 				<h3>Are you sure the following information is correct</h3>
 				<div>
@@ -189,10 +254,67 @@ const fetchList = () => {
 	
 				<button position= 'center' onClick={startStake}>Confirm Stake</button>
 				</div>
-			</Popup2>
+			</Popup2> */}
 		  </form>
 		  
 		</article>
+
+
+		<Popups trigger = {button} setTrigger = {setButton}>
+			{
+				is_Valid?
+				<h3> Verify Your Information </h3>:
+				<h3> Invalid Parameters </h3>
+			}
+			
+	
+			
+			<div>
+				{Share_Error}
+				</div>
+				<div>
+				{Time_Error}
+				</div>
+				{/* <div>
+					Address :: {address}
+				</div> */}
+
+			{ is_Valid?
+				<button position= 'center' onClick={startStake}>Confirm Stake</button>:
+				""
+			}
+		</Popups>
+
+
+
+		<Popups trigger = {stakeButton} setTrigger = {setstakeButton}>
+			{list_of_stakes.map((stake) => ( <> 
+				<div>
+					Stake ID : {stake.stakeId}
+				</div>
+				<div>
+					Staked Hearts : {stake.stakedHearts}
+				</div>
+				<div>
+					Stake Days : {stake.stakedDays}
+				</div>
+				<div>
+					number in list : {stake.stakeId-list_of_stakes[0].stakeId}
+				</div>
+
+				<button onClick={() => endStake(stake.stakeId-list_of_stakes[0].stakeId,stake.stakeId)}>
+					End Stake
+				</button>
+
+
+				<br/>
+				
+				
+				</>)
+			)}
+		</Popups>
+	<button onClick={staks}>
+		Stakes</button>
 
 
 		</>
