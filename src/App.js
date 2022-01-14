@@ -111,7 +111,7 @@ const fetch_stake = () => {
 
 		let Share_Error
 		if (shares >= balance+1){
-			Share_Error = <div>Your prposed staked HEX exceeds your current balance</div>
+			Share_Error = <div>Your proposed staked HEX exceeds your current balance</div>
 			is_Valid = false;
 		
 		} else if (shares == ''){
