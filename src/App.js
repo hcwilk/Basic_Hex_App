@@ -1,8 +1,15 @@
 import './App.css';
-import React, {useEffect, useState} from 'react'
-import { init , getOwnBalance, getStakes, addy, whole_stake, stakeHex, endStake} from './ERC20';
+import React, {useEffect, useState, Component} from 'react'
+import { init , getOwnBalance, getStakes, addy} from './ERC20';
 import {Popup, Button} from 'semantic-ui-react'
+import {Popup as Popup2} from 'reactjs-popup' 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap-theme.min.css';
+import {FormControl, InputGroup} from 'react-bootstrap';
+import { HexAddress } from './config';
+import {striped, bordered, hover, Table} from 'react-bootstrap'
 import Popups from './Components/Popups'
+
 
 
 // you already know that literally all of the code possible is going to go in this doc
@@ -15,7 +22,8 @@ function App() {
 	const [button, setButton] = useState(false);
 	const [stakeButton, setstakeButton] = useState(false)
 	const [list_of_stakes] = useState([]);
-	
+
+
 
 useEffect(() => {
   init()
@@ -30,10 +38,6 @@ useEffect(() => {
 }, [stakes])
 
 
-
-
-
-
 const startStake = () => {
 	stakeHex(shares,time)
 		.then((contract) => {
@@ -42,7 +46,7 @@ const startStake = () => {
 		.catch((err) => {
 			console.log(err);
 		});
-};
+	};
 
 const fetchAddress = () => {
 	addy()
@@ -84,21 +88,9 @@ const fetch_stake = () => {
 			});
 	};
 
+
 	const staks = () => {
-		console.log(list_of_stakes)
-
 		setstakeButton(true);
-	}
-
-	const end_stake = (index,id) => {
-		endStake(index,id)
-		.then((follow) => {
-			console.log(follow)
-		})
-		.catch((err) => {
-			console.log(err);
-		});
-
 	}
 
 
@@ -106,18 +98,15 @@ const fetch_stake = () => {
 	const fetchStakes = () => {
 		getStakes()
 		.then((stakes) => {
-				setStakes(stakes);
+			setStakes(stakes);
 		})
 		.catch((err) => {
 			console.log(err);
 		})
 	};
 		const handleSubmit = (e) => {
-		
 		  e.preventDefault();
 		}
-
-
 
 		let is_Valid=true;
 
@@ -147,123 +136,114 @@ const fetch_stake = () => {
 			Time_Error = <div> You are about to stake for {time} days </div>
 		}
 
-
-
-
-
+		
+		
+		
+		
+		return <>
+		<header>
+			HEX
+		</header>
 
 		
+		<h2>
+			Stake
+		</h2>
 
-		return <>
-		<br/>
-		<br/>
-				<h4>
-			Your hex balance is {balance}
-		</h4>
 		<h4>
-			Your address is {address}
+			What's Up Bitches! This is where a sick description of what hex staking is and how much money you can make until you are just filthy rich!!!!
 		</h4>
+
+		<div className='userInputs'>
+			<form1 onSubmit={handleSubmit}>
+				
+				<p>
+					<label>HEX</label>
+					<Popup className='popup' trigger={<Button>Info</Button>} content={'Hearts to stake (must be less than '+balance+')'} hoverable position="right center"/>
+					<br></br>
+					<input className='bigger' type = 'number' max={balance} min='0' placeholder={'HEX to Stake'} value={shares} onChange={(e) => setShares(e.target.value)}/>
+				</p>
+
+				<br></br>
+
+				<p>
+					<label>Stake Length</label>
+					<Popup trigger={<Button>Info</Button>} content={"How long you want to stake your HEX"} hoverable position="right center"/>
+					<br></br>
+					<input className='bigger' type = 'number' max='5555' min='0' value={time} onChange={(e) => setTime(e.target.value)} placeholder='Days to Stake (1-5555 days)'/>
+				</p>
+
+				<br></br>
+
+				<p>
+					<label>User Address</label>
+					<Popup trigger={<Button>Info</Button>} content={"Always double check that your address is correct"} hoverable position="right center"/>
+					<br></br>
+					<input className='bigger' autoComplete='off' type="text" id="address" defaultValue={address} readOnly/>
+				</p>
+
+				<br></br>
+
+				<button className='stake-button' type='submit'>Stake</button>
+
+			</form1>
+		</div>
+
+		<div className='inputBox'>
+			<p> 
+				<text1> User Address</text1> <input className='smaller' value={address} readOnly></input>
+				<br></br> <br></br>
+				<text1> HEX Address</text1> <input className='smaller' value={HexAddress} readOnly></input>
+				<br></br> <br></br>
+				<text1> HEX to Stake</text1> <input className='smaller' value={shares} readOnly></input>
+				<br></br> <br></br>
+				<text1> Days to Stake</text1> <input className='smaller' value={time} readOnly></input>
+			</p>
+		</div>
+		
+		<h2>
+			Current Stakes
+		</h2>
+
 		<h4>
-			Your number of stakes is {stakes}
+			What's Up Bitches! This is where a sick description of what hex staking is and how much money you can make until you are just filthy rich!!!!
 		</h4>
-		<article>
-		  <form className='form' onSubmit={handleSubmit}>
-		  <div className ='form-control'>
-			<label>
-			  Hex  
-			</label>
-			<input 
-			type = 'number'
-			max={balance}
-			min='0'
-			id="Shares"
-			name='Shares' 
 
-			  value={shares}
-			  onChange={(e) => setShares(e.target.value)}/>
-			  <Popup trigger={<Button>Info</Button>} content={'Hearts to stake (must be less than '+balance+')'} hoverable position="right center"/>
-		  </div>
-		  <div className ='form-control'>
-			<label>
-			  Time : 
-			</label>
-			<input 
-			type = 'number'
-			max='5555'
-			min='0'
-			id="Time" 
-			name='Time' 
-			value={time}
-			placeholder='1-5555 days'
-			autoComplete='false'
-			
-			onChange={(e) => setTime(e.target.value)} />
-			<Popup trigger={<Button>Info</Button>} content={"How long you want to stake your HEX"} hoverable position="right center"/>
-		  </div>
-		 
-
-		  <button onClick={() => 
-			  setButton(true)
-		  }>Stake</button>
-		 
-		  
-		 
-		 
-		  </form>
-		  
-		</article>
-
-
-		<Popups trigger = {button} setTrigger = {setButton}>
-			{
-				is_Valid?
-				<h3> Verify Your Information </h3>:
-				<h3> Invalid Parameters </h3>
-			}
-			
-			<div>
-				{Share_Error}
-				</div>
-				<div>
-				{Time_Error}
-				</div>
-
-
-			{ is_Valid?
-				<button position= 'center' onClick={startStake}>Confirm Stake</button>:
-				""
-			}
-		</Popups>
-
-
-
-		<Popups trigger = {stakeButton} setTrigger = {setstakeButton}>
-			{list_of_stakes.map((stake) => ( <> 
-				<div>
-					Stake ID : {stake.stakeId}
-				</div>
-				<div>
-					Staked Hearts : {stake.stakedHearts}
-				</div>
-				<div>
-					Stake Days : {stake.stakedDays}
-				</div>
-				<div>
-					number in list : {stake.stakeId-list_of_stakes[0].stakeId}
-				</div>
-
-				<button onClick={() => endStake(stake.stakeId-list_of_stakes[0].stakeId,stake.stakeId)}>
-					End Stake
-				</button>
-
-				<br/>
-				</>)
-			)}
-		</Popups>
-	<button onClick={staks}>
-		Stakes</button>
-
-		</>};
+		<Table striped bordered hover>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Stake Id</th>
+					<th>HEX Staked</th>
+					<th>Staked Days</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>End Stake</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Mark</td>
+					<td>Otto</td>
+					<td>@mdo</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Jacob</td>
+					<td>Thornton</td>
+					<td>@fat</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td colSpan={2}>Larry the Bird</td>
+					<td>@twitter</td>
+				</tr>
+			</tbody>
+		</Table>
+		
+		</>
+	  };
 
 
 export default App;
