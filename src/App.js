@@ -134,6 +134,14 @@ const fetch_stake = () => {
 		else {
 			Time_Error = <div> You are about to stake for {time} days </div>
 		}
+		let has_Stakes
+
+		if (stakes>=1){
+			has_Stakes = true;
+		}
+		else{
+			has_Stakes = false;
+		}
 
 		
 		
@@ -234,56 +242,68 @@ const fetch_stake = () => {
 
 
 		<Popups trigger = {stakeButton} setTrigger = {setstakeButton}>
+		
+		{ has_Stakes?
 		<Table striped bordered hover>
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Stake Id</th>
-					<th>HEX Staked</th>
-					<th>Staked Days</th>
-					<th>Start Date</th>
-					<th>End Date</th>
-					<th>End Stake</th>
-				</tr>
-			</thead>
-			<tbody>
-				
-				
-				{list_of_stakes.map((stake) => ( <> 
-				<tr>
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Stake Id</th>
+				<th>HEX Staked</th>
+				<th>Staked Days</th>
+				<th>Start Day</th>
+				<th>End Day</th>
+				<th>End Stake</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			
+			{list_of_stakes.map((stake) => ( <> 
+			<tr>
 
-				<td>
-				{stake.stakeId-list_of_stakes[0].stakeId}
-				</td>
-				<td>
-					{stake.stakeId}
-				</td>
-				<td>
-					{stake.stakedHearts}
-				</td>
-				<td>
-					{stake.stakedDays}
-				</td>
-				<td>
-					{stake.lockedDay}
-				</td>
-				<td>
-					{stake.lockedDay+stake.stakedDays}
-				</td>
-
-
-				<button onClick={() => endStake(stake.stakeId-list_of_stakes[0].stakeId,stake.stakeId)}>
-					End Stake
-				</button>
-				</tr>
+			<td>
+			{stake.stakeId-list_of_stakes[0].stakeId}
+			</td>
+			<td>
+				{stake.stakeId}
+			</td>
+			<td>
+				{stake.stakedHearts}
+			</td>
+			<td>
+				{stake.stakedDays}
+			</td>
+			<td>
+				{stake.lockedDay}
+			</td>
+			<td>
+				{+stake.lockedDay + +stake.stakedDays}
+			</td>
 
 
-				
-				</>)
-			)}
-				
-			</tbody>
-		</Table>
+			<button onClick={() => endStake(stake.stakeId-list_of_stakes[0].stakeId,stake.stakeId)}>
+				End Stake
+			</button>
+			</tr>
+
+
+			
+			</>)
+		)}
+			
+		</tbody>
+	</Table>:
+
+	<div> YOU have no stakes </div>
+		
+
+		}
+			
+		
+		
+			
+
 
 		</Popups>
 	<button onClick={staks}>
