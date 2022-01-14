@@ -156,7 +156,9 @@ const fetch_stake = () => {
 		</h2>
 
 		<h4>
-			What's Up Bitches! This is where a sick description of what hex staking is and how much money you can make until you are just filthy rich!!!!
+			Welcome to our HEX Staking Dapp! This is a site where you can stake HEX, 
+			see your current stakes, and end stakes. For more information, visit hex.com. 
+			We hope you're ready to make a fortune!
 		</h4>
 
 		<div className='userInputs'>
@@ -212,7 +214,7 @@ const fetch_stake = () => {
 		</h2>
 
 		<h4>
-			What's Up Bitches! This is where a sick description of what hex staking is and how much money you can make until you are just filthy rich!!!!
+			Here is where you can see a table of your current stakes. Just click the button and you will see them all!
 		</h4>
 
 		
