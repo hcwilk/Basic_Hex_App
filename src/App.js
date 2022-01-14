@@ -108,31 +108,32 @@ const fetch_stake = () => {
 		}
 
 		let is_Valid=true;
+		let count = 0;
 
 		let Share_Error
-		if (shares >= balance+1){
-			Share_Error = <div>Your proposed staked HEX exceeds your current balance</div>
-			is_Valid = false;
-		
-		} else if (shares == ''){
-			Share_Error = <div> HEX to stake must be greater than 0</div>
-			is_Valid = false;
-		}
-		else {
-			Share_Error = <div> You are about to stake {shares} HEX </div>
-		}
-
 		let Time_Error
-		if (time >= 5556 ){
+		if ((shares >= balance+1||shares == '' || shares==0)&&(time >= 5556||time == ''||time==0)){
+			Share_Error = <div>Your proposed staked HEX must be greater than 0 and below {balance}</div>
 			Time_Error = <div>Time must be between 0 and 5556 days</div>
 			is_Valid = false;
+		
 		} 
-		else if (time == ''){
-			Time_Error = <div> Value must be greater than 0</div>
+		else if (time >= 5556||time == ''){
+			Time_Error = <div>Time must be between 0 and 5556 days</div>
+			Share_Error = <div> </div>
+			is_Valid = false;
+		} 
+		else if (shares >= balance+1||shares == '' || shares==0){
+			Share_Error = <div> You proposed staked HEX has to be greater than 0 and below {balance}</div>
+			Time_Error = <div>	 </div>
 			is_Valid = false;
 		} 
 		else {
+			Share_Error = <div> You are about to stake {shares} HEX </div>
 			Time_Error = <div> You are about to stake for {time} days </div>
+
+			is_Valid = true;
+
 		}
 		let has_Stakes
 
@@ -170,6 +171,7 @@ const fetch_stake = () => {
 					<br></br>
 					<input className='bigger' type = 'number' max={balance} min='0' placeholder={'HEX to Stake'} value={shares} onChange={(e) => setShares(e.target.value)}/>
 				</p>
+
 
 				<br></br>
 
@@ -263,7 +265,7 @@ const fetch_stake = () => {
 			<tr>
 
 			<td>
-			{stake.stakeId-list_of_stakes[0].stakeId}
+			fuck
 			</td>
 			<td>
 				{stake.stakeId}
@@ -280,6 +282,8 @@ const fetch_stake = () => {
 			<td>
 				{+stake.lockedDay + +stake.stakedDays}
 			</td>
+
+			
 
 
 			<button onClick={() => endStake(stake.stakeId-list_of_stakes[0].stakeId,stake.stakeId)}>
