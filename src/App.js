@@ -34,7 +34,7 @@ useEffect(() => {
 
 useEffect(() => {
 	fetch_stake()
-}, [stakes, fetch_stake()])
+}, [stakes, fetch_stake])
 
 
 const startStake = () => {
