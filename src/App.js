@@ -1,12 +1,12 @@
 import './App.css';
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, Component} from 'react'
 import { init , getOwnBalance, getStakes, addy, whole_stake, stakeHex, endStake} from './ERC20';
 import {Popup, Button} from 'semantic-ui-react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
-// import {FormControl, InputGroup} from 'react-bootstrap';
+import {FormControl, InputGroup} from 'react-bootstrap';
 import { HexAddress } from './config';
-import {Table} from 'react-bootstrap'
+import {striped, bordered, hover, Table} from 'react-bootstrap'
 import Popups from './Components/Popups'
 
 
@@ -14,7 +14,7 @@ import Popups from './Components/Popups'
 // you already know that literally all of the code possible is going to go in this doc
 function App() {
 	const [balance, setBalance] = useState(null);
-  	const [stakes, setStakes] = useState(0);
+  	const [stakes, setStakes] = useState(null);
   	const [address, setAddress] = useState(null);
 	const [shares, setShares] = useState('');
 	const [time, setTime] = useState('');
@@ -29,37 +29,12 @@ useEffect(() => {
   fetchHexBalance()
   fetchStakes()
   fetchAddress()
- 
   
 }, [])
 
 useEffect(() => {
-
-	const fetch_stake = () => {
-		console.log("Stakes", stakes)
-		for (var i = 0; i < stakes; i++) {
-			console.log("yeah what")
-			whole_stake(i)
-			.then((stake) => {
-				list_of_stakes.push(stake);
-	
-	
-				// console.log(stake)
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-		  }
-	
-	
-	};
 	fetch_stake()
-	
-	
-  }, [stakes]) // eslint-disable-line react-hooks/exhaustive-deps
-
-
-
+}, [stakes])
 
 
 const startStake = () => {
@@ -82,7 +57,22 @@ const fetchAddress = () => {
 		});
 };
 
+const fetch_stake = () => {
+	for (var i = 0; i < stakes; i++) {
+		whole_stake(i)
+		.then((stake) => {
+			list_of_stakes.push(stake);
 
+
+			// console.log(stake)
+		})
+		.catch((err) => {
+			console.log(err);
+		});
+	  }
+
+
+};
 
 
 	const fetchHexBalance = () => {
@@ -97,8 +87,6 @@ const fetchAddress = () => {
 
 
 	const staks = () => {
-		console.log("BRO")
-		console.log(list_of_stakes)
 		setstakeButton(true);
 	}
 
@@ -107,8 +95,7 @@ const fetchAddress = () => {
 	const fetchStakes = () => {
 		getStakes()
 		.then((stakes) => {
-			console.log(stakes);
-			setStakes(stakes)
+			setStakes(stakes);
 		})
 		.catch((err) => {
 			console.log(err);
@@ -169,7 +156,9 @@ const fetchAddress = () => {
 		</h2>
 
 		<h4>
-			What's Up Bitches! This is where a sick description of what hex staking is and how much money you can make until you are just filthy rich!!!!
+			Welcome to our HEX Staking Dapp! This is a site where you can stake HEX, 
+			see your current stakes, and end stakes. For more information, visit hex.com. 
+			We hope you're ready to make a fortune!
 		</h4>
 
 		<div className='userInputs'>
@@ -214,9 +203,9 @@ const fetchAddress = () => {
 				<br></br> <br></br>
 				<text1> HEX Address</text1> <input className='smaller' value={HexAddress} readOnly></input>
 				<br></br> <br></br>
-				<text1> HEX to Stake</text1> <input className='smaller' value={shares} readOnly></input>
+				<text1> HEX to Stake</text1> <input className='smaller' value={shares/1} readOnly></input>
 				<br></br> <br></br>
-				<text1> Days to Stake</text1> <input className='smaller' value={time} readOnly></input>
+				<text1> Days to Stake</text1> <input className='smaller' value={time/1} readOnly></input>
 			</p>
 		</div>
 		
@@ -225,7 +214,9 @@ const fetchAddress = () => {
 		</h2>
 
 		<h4>
-			What's Up Bitches! This is where a sick description of what hex staking is and how much money you can make until you are just filthy rich!!!!
+			Here is where you can see a table of your current stakes. 
+			Just click the button and you will see them all! (If you 
+			don't have any, try starting one)
 		</h4>
 
 		
@@ -275,7 +266,7 @@ const fetchAddress = () => {
 			<tr>
 
 			<td>
-			{+stake.stakeId - +list_of_stakes[0].stakeId}
+			fuck
 			</td>
 			<td>
 				{stake.stakeId}
