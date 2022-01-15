@@ -37,7 +37,6 @@ useEffect(() => {
 
 	const fetch_stake = () => {
 		console.log("Stakes", stakes)
-		console.log("Addy", address)
 		for (var i = 0; i < stakes; i++) {
 			console.log("yeah what")
 			whole_stake(i)
@@ -57,7 +56,7 @@ useEffect(() => {
 	fetch_stake()
 	
 	
-  }, [stakes])
+  }, [stakes]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
 
