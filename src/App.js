@@ -34,8 +34,28 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
+
+	const fetch_stake = () => {
+		console.log("Stakes", stakes)
+		console.log("Addy", address)
+		for (var i = 0; i < stakes; i++) {
+			console.log("yeah what")
+			whole_stake(i)
+			.then((stake) => {
+				list_of_stakes.push(stake);
+	
+	
+				// console.log(stake)
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		  }
+	
+	
+	};
 	fetch_stake()
-   
+	
 	
   }, [stakes])
 
@@ -63,25 +83,7 @@ const fetchAddress = () => {
 		});
 };
 
-const fetch_stake = () => {
-	console.log("Stakes", stakes)
-	console.log("Addy", address)
-	for (var i = 0; i < stakes; i++) {
-		console.log("yeah what")
-		whole_stake(i)
-		.then((stake) => {
-			list_of_stakes.push(stake);
 
-
-			// console.log(stake)
-		})
-		.catch((err) => {
-			console.log(err);
-		});
-	  }
-
-
-};
 
 
 	const fetchHexBalance = () => {
