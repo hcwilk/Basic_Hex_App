@@ -261,7 +261,7 @@ const fetchAddress = () => {
 			<tr>
 
 			<td>
-			fuck
+			{+stake.stakeId - +list_of_stakes[0].stakeId}
 			</td>
 			<td>
 				{stake.stakeId}
