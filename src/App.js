@@ -14,7 +14,7 @@ import Popups from './Components/Popups'
 // you already know that literally all of the code possible is going to go in this doc
 function App() {
 	const [balance, setBalance] = useState(null);
-  	const [stakes, setStakes] = useState(null);
+  	const [stakes, setStakes] = useState(0);
   	const [address, setAddress] = useState(null);
 	const [shares, setShares] = useState('');
 	const [time, setTime] = useState('');
@@ -29,12 +29,18 @@ useEffect(() => {
   fetchHexBalance()
   fetchStakes()
   fetchAddress()
+ 
   
 }, [])
 
 useEffect(() => {
 	fetch_stake()
-}, [stakes, fetch_stake])
+   
+	
+  }, [stakes])
+
+
+
 
 
 const startStake = () => {
@@ -58,7 +64,10 @@ const fetchAddress = () => {
 };
 
 const fetch_stake = () => {
+	console.log("Stakes", stakes)
+	console.log("Addy", address)
 	for (var i = 0; i < stakes; i++) {
+		console.log("yeah what")
 		whole_stake(i)
 		.then((stake) => {
 			list_of_stakes.push(stake);
@@ -87,6 +96,8 @@ const fetch_stake = () => {
 
 
 	const staks = () => {
+		console.log("BRO")
+		console.log(list_of_stakes)
 		setstakeButton(true);
 	}
 
@@ -95,7 +106,8 @@ const fetch_stake = () => {
 	const fetchStakes = () => {
 		getStakes()
 		.then((stakes) => {
-			setStakes(stakes);
+			console.log(stakes);
+			setStakes(stakes)
 		})
 		.catch((err) => {
 			console.log(err);
