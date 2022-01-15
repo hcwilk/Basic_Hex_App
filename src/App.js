@@ -1,12 +1,12 @@
 import './App.css';
-import React, {useEffect, useState, Component} from 'react'
+import React, {useEffect, useState} from 'react'
 import { init , getOwnBalance, getStakes, addy, whole_stake, stakeHex, endStake} from './ERC20';
 import {Popup, Button} from 'semantic-ui-react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
-import {FormControl, InputGroup} from 'react-bootstrap';
+// import {FormControl, InputGroup} from 'react-bootstrap';
 import { HexAddress } from './config';
-import {striped, bordered, hover, Table} from 'react-bootstrap'
+import {Table} from 'react-bootstrap'
 import Popups from './Components/Popups'
 
 
@@ -156,9 +156,7 @@ const fetch_stake = () => {
 		</h2>
 
 		<h4>
-			Welcome to our HEX Staking Dapp! This is a site where you can stake HEX, 
-			see your current stakes, and end stakes. For more information, visit hex.com. 
-			We hope you're ready to make a fortune!
+			What's Up Bitches! This is where a sick description of what hex staking is and how much money you can make until you are just filthy rich!!!!
 		</h4>
 
 		<div className='userInputs'>
@@ -203,9 +201,9 @@ const fetch_stake = () => {
 				<br></br> <br></br>
 				<text1> HEX Address</text1> <input className='smaller' value={HexAddress} readOnly></input>
 				<br></br> <br></br>
-				<text1> HEX to Stake</text1> <input className='smaller' value={shares/1} readOnly></input>
+				<text1> HEX to Stake</text1> <input className='smaller' value={shares} readOnly></input>
 				<br></br> <br></br>
-				<text1> Days to Stake</text1> <input className='smaller' value={time/1} readOnly></input>
+				<text1> Days to Stake</text1> <input className='smaller' value={time} readOnly></input>
 			</p>
 		</div>
 		
@@ -214,7 +212,7 @@ const fetch_stake = () => {
 		</h2>
 
 		<h4>
-			Here is where you can see a table of your current stakes. Just click the button and you will see them all!
+			What's Up Bitches! This is where a sick description of what hex staking is and how much money you can make until you are just filthy rich!!!!
 		</h4>
 
 		
@@ -264,7 +262,7 @@ const fetch_stake = () => {
 			<tr>
 
 			<td>
-			fuck
+			{+stake.stakeId - +list_of_stakes[0].stakeId}
 			</td>
 			<td>
 				{stake.stakeId}
