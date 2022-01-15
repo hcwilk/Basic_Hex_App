@@ -38,7 +38,7 @@ export const init = async () => {
 
 	
 	const networkId = await web3.eth.net.getId();
-	// console.log(networkId)
+	console.log(networkId)
 
 
 
