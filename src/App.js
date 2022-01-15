@@ -68,18 +68,6 @@ const fetchAddress = () => {
 		});
 };
 
-const fetch_stake = () => {
-	for (var i = 0; i < stakes; i++) {
-		whole_stake(i)
-		.then((stake) => {
-			list_of_stakes.push(stake);
-
-		})
-		.catch((err) => {
-			console.log(err);
-		});
-	  }
-};
 
 
 	const fetchHexBalance = () => {
