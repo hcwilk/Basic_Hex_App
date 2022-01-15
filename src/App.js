@@ -1,12 +1,11 @@
 import './App.css';
-import React, {useEffect, useState, Component} from 'react'
+import React, {useEffect, useState} from 'react'
 import { init , getOwnBalance, getStakes, addy, whole_stake, stakeHex, endStake} from './ERC20';
 import {Popup, Button} from 'semantic-ui-react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
-import {FormControl, InputGroup} from 'react-bootstrap';
 import { HexAddress } from './config';
-import {striped, bordered, hover, Table} from 'react-bootstrap'
+import {Table} from 'react-bootstrap'
 import Popups from './Components/Popups'
 
 
@@ -33,8 +32,20 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
+	const fetch_stake = () => {
+		for (var i = 0; i < stakes; i++) {
+			whole_stake(i)
+			.then((stake) => {
+				list_of_stakes.push(stake);
+	
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+		  }
+	};
 	fetch_stake()
-}, [stakes])
+}, [stakes]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
 const startStake = () => {
@@ -63,15 +74,11 @@ const fetch_stake = () => {
 		.then((stake) => {
 			list_of_stakes.push(stake);
 
-
-			// console.log(stake)
 		})
 		.catch((err) => {
 			console.log(err);
 		});
 	  }
-
-
 };
 
 
