@@ -103,7 +103,6 @@ export const whole_stake = async (number) => {
 		await init();
 	}
 
-	console.log("Why the fuck is this not calling")
 	return erc20Contract.methods
 	.stakeLists(selectedAccount,number)
 	.call()

@@ -43,6 +43,7 @@ useEffect(() => {
 				console.log(err);
 			});
 		  }
+		  console.log("testing")
 	};
 	fetch_stake()
 }, [stakes]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -274,7 +275,7 @@ const fetchAddress = () => {
 		<tbody>
 			
 			
-			{list_of_stakes.map((stake, index) => ( 
+			{list_of_stakes.sort((a, b) => a.stakeId > b.stakeId ? 1:-1).map((stake, index) => ( 
 			<> 
 			<tr>
 
