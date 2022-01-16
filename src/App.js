@@ -301,7 +301,7 @@ const fetchAddress = () => {
 			
 
 
-			<button onClick={() => endStake(stake.stakeId-list_of_stakes[0].stakeId,stake.stakeId)}>
+			<button onClick={() => endStake(index,stake.stakeId)}>
 				End Stake
 			</button>
 			</tr>
