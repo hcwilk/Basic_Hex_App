@@ -48,7 +48,6 @@ useEffect(() => {
 	fetch_stake()
 }, [stakes]) // eslint-disable-line react-hooks/exhaustive-deps
 
-
 const startStake = () => {
 	stakeHex(shares/1,time/1)
 		.then((result) => {
@@ -69,8 +68,6 @@ const fetchAddress = () => {
 		});
 };
 
-
-
 	const fetchHexBalance = () => {
 		getOwnBalance()
 			.then((balance) => {
@@ -85,8 +82,6 @@ const fetchAddress = () => {
 	const staks = () => {
 		setstakeButton(true);
 	}
-
-
 
 	const fetchStakes = () => {
 		getStakes()
@@ -124,7 +119,6 @@ const fetchAddress = () => {
 		else {
 			Share_Error = <div> You are about to stake {shares/1} HEX </div>
 			Time_Error = <div> You are about to stake for {time/1} days </div>
-
 			is_Valid = true;
 
 		}
@@ -132,7 +126,6 @@ const fetchAddress = () => {
 
 		if (stakes>=1){
 			has_Stakes = true;
-			// console.log(list_of_stakes)
 		}
 		else{
 			has_Stakes = false;
@@ -224,15 +217,11 @@ const fetchAddress = () => {
 			Current Stakes
 		</h2>
 
-		
-
 		<h4>
 			Here is where you can see a table of your current stakes. 
 			Just click the button and you will see them all! (If you 
 			don't have any, try starting one)
 		</h4>
-
-		
 
 		<Popups trigger = {button} setTrigger = {setButton}>
 			{
@@ -254,8 +243,6 @@ const fetchAddress = () => {
 				""
 			}
 		</Popups>
-
-
 
 		<Popups trigger = {stakeButton} setTrigger = {setstakeButton}>
 		
@@ -297,26 +284,23 @@ const fetchAddress = () => {
 
 			</td>
 			<td>
-				{dates(dec1_miliseconds+(+stake.lockedDay + +stake.stakedDays+2)*24*60*60*1000-86400000-86400000)}
+				{dates(dec1_miliseconds+(+stake.lockedDay + +stake.stakedDays)*24*60*60*1000)}
 			</td>
 
-			
-
-
-			<button onClick={() => endStake(index,stake.stakeId)}>
+			<button onClick={() => 
+				endStake(index,stake.stakeId)
+				}>
 				End Stake
 			</button>
 			</tr>
 
-
-			
 			</>)
 		)}
 			
 		</tbody>
 	</Table>:
 
-	<div> YOU have no stakes </div>
+	<div> You currently don't have any stakes! </div>
 		
 		}
 			
@@ -326,6 +310,5 @@ const fetchAddress = () => {
 		Stakes</button>
 		</>
 	  };
-
 
 export default App;
