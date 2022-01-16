@@ -42,11 +42,10 @@ text { display: table-cell; padding-right: 1rem; color: gray; font-size: inherit
 
 text1 {padding-right: 1rem; color: black; font-size: 15px;  font-weight: 350;  margin-left: 5px; margin-bottom: 1rem;}
 
-input { display: table-cell; width: 80%; border-width: .1rem; padding-left: 5px; padding: .5rem;}
+input .bigger { display: table-cell; width: 80%; border-width: .1rem; padding-left: 5px; padding: .5rem;}
 
-input .smaller {
-  float: right;
-}
+input .smaller { display: table-cell; width: 80%; border-width: .1rem; padding-left: 5px; padding: .5rem; float: right;}
+
 
 ::placeholder { color: black; font-size: inherit;}
 

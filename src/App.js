@@ -170,7 +170,7 @@ const fetchAddress = () => {
 				
 				<p>
 					<label>HEX</label>
-					<Popup className='popup' trigger={<Button>Info</Button>} content={'Hearts to stake (must be less than '+balance+')'} hoverable position="right center"/>
+					<Popup trigger={<Button>Info</Button>} setTrigger={setButton}content={'Hearts to stake (must be less than '+balance+')'} hoverable position="right center"/>
 					<br></br>
 					<input className='bigger' type = 'number' max={balance} min='0' placeholder={'HEX to Stake'} value={shares} onChange={(e) => setShares(e.target.value)}/>
 				</p>
@@ -205,11 +205,12 @@ const fetchAddress = () => {
 			<p> 
 				<text1> User Address</text1> <input className='smaller' value={address} readOnly></input>
 				<br></br> <br></br>
-				<text1> HEX Address</text1> <input className='smaller' value={HexAddress} readOnly></input>
+				<text1> HEX Address</text1> <input value={HexAddress} readOnly></input>
 				<br></br> <br></br>
-				<text1> HEX to Stake</text1> <input className='smaller' value={shares/1} readOnly></input>
+				<text1> HEX to Stake</text1> <input value={shares/1} readOnly></input>
 				<br></br> <br></br>
-				<text1> Days to Stake</text1> <input className='smaller' value={time/1} readOnly></input>
+				<text1> Days to Stake</text1> <input value={time/1} readOnly></input>
+				<br></br> <br></br>
 			</p>
 		</div>
 		
