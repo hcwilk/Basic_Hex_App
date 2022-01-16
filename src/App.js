@@ -43,7 +43,7 @@ useEffect(() => {
 				console.log(err);
 			});
 		  }
-		  console.log("testing")
+		//   console.log("testing")
 	};
 	fetch_stake()
 }, [stakes]) // eslint-disable-line react-hooks/exhaustive-deps
@@ -297,7 +297,7 @@ const fetchAddress = () => {
 
 			</td>
 			<td>
-				{dates(dec1_miliseconds+(+stake.lockedDay + +stake.stakedDays+2)*24*60*60*1000-86400000)}
+				{dates(dec1_miliseconds+(+stake.lockedDay + +stake.stakedDays+2)*24*60*60*1000-86400000-86400000)}
 			</td>
 
 			
