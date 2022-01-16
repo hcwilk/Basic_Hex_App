@@ -131,6 +131,7 @@ const fetchAddress = () => {
 
 		if (stakes>=1){
 			has_Stakes = true;
+			// console.log(list_of_stakes)
 		}
 		else{
 			has_Stakes = false;
@@ -139,10 +140,10 @@ const fetchAddress = () => {
 		var dec1_miliseconds = 18232*60*60*24*1000;
 
 
-		var d=new Date();
-		console.log(d.getTime()/(1000*60*60*24));
-		var date = new Date(dec1_miliseconds)
-		console.log("december please", date)
+		// var d=new Date();
+		// console.log(d.getTime()/(1000*60*60*24));
+		// var date = new Date(dec1_miliseconds)
+		// console.log("december please", date)
 
 
 		const dates = (miliseconds) => {
@@ -290,7 +291,7 @@ const fetchAddress = () => {
 				{stake.stakedDays}
 			</td>
 			<td>
-				{dates(dec1_miliseconds+(stake.lockedDay)*24*60*60*1000+86400000)}
+				{dates(dec1_miliseconds+(stake.lockedDay)*24*60*60*1000)}
 				{}
 
 			</td>
