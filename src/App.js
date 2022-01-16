@@ -136,6 +136,20 @@ const fetchAddress = () => {
 			has_Stakes = false;
 		}
 
+		var dec1_miliseconds = 18232*60*60*24*1000;
+
+
+		var d=new Date();
+		console.log(d.getTime()/(1000*60*60*24));
+		var date = new Date(dec1_miliseconds)
+		console.log("december please", date)
+
+
+		const dates = (miliseconds) => {
+			var date = new Date(miliseconds);
+			return (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
+		}
+
 		
 		
 		
@@ -208,6 +222,8 @@ const fetchAddress = () => {
 			Current Stakes
 		</h2>
 
+		
+
 		<h4>
 			Here is where you can see a table of your current stakes. 
 			Just click the button and you will see them all! (If you 
@@ -249,19 +265,20 @@ const fetchAddress = () => {
 				<th>Stake Id</th>
 				<th>HEX Staked</th>
 				<th>Staked Days</th>
-				<th>Start Day</th>
-				<th>End Day</th>
+				<th>Start Date</th>
+				<th>End Date</th>
 				<th>End Stake</th>
 			</tr>
 		</thead>
 		<tbody>
 			
 			
-			{list_of_stakes.map((stake) => ( <> 
+			{list_of_stakes.map((stake, index) => ( 
+			<> 
 			<tr>
 
 			<td>
-			{+stake.stakeId - +list_of_stakes[0].stakeId}
+			{index}
 			</td>
 			<td>
 				{stake.stakeId}
@@ -273,10 +290,12 @@ const fetchAddress = () => {
 				{stake.stakedDays}
 			</td>
 			<td>
-				{stake.lockedDay}
+				{dates(dec1_miliseconds+(stake.lockedDay)*24*60*60*1000+86400000)}
+				{}
+
 			</td>
 			<td>
-				{+stake.lockedDay + +stake.stakedDays}
+				{dates(dec1_miliseconds+(+stake.lockedDay + +stake.stakedDays+2)*24*60*60*1000-86400000)}
 			</td>
 
 			
