@@ -1,7 +1,6 @@
 import './App.css';
 import React, {useEffect, useState} from 'react'
 import { init , getOwnBalance, getStakes, addy, whole_stake, stakeHex, endStake} from './ERC20';
-import {Popup, Button} from 'semantic-ui-react'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import { HexAddress } from './config';
@@ -19,6 +18,10 @@ function App() {
 	const [time, setTime] = useState('');
 	const [button, setButton] = useState(false);
 	const [stakeButton, setstakeButton] = useState(false)
+	const [stakeButton1, setstakeButton1] = useState(false)
+	const [stakeButton2, setstakeButton2] = useState(false)
+	const [stakeButton3, setstakeButton3] = useState(false)
+
 	const [list_of_stakes] = useState([]);
 
 
@@ -170,7 +173,10 @@ const fetchAddress = () => {
 				
 				<p>
 					<label>HEX</label>
-					<Popup trigger={<Button>Info</Button>} setTrigger={setButton}content={'Hearts to stake (must be less than '+balance+')'} hoverable position="right center"/>
+					<button onClick={() => setstakeButton1(true)}>Info</button>
+					<Popups trigger={stakeButton1} setTrigger={setstakeButton1}>
+						Hearts to stake (must be less than {balance})
+					</Popups>
 					<br></br>
 					<input className='bigger' type = 'number' max={balance} min='0' placeholder={'HEX to Stake'} value={shares} onChange={(e) => setShares(e.target.value)}/>
 				</p>
@@ -180,8 +186,10 @@ const fetchAddress = () => {
 
 				<p>
 					<label>Stake Length</label>
-					<Popup trigger={<Button>Info</Button>} content={"How long you want to stake your HEX"} hoverable position="right center"/>
-					<br></br>
+					<button onClick={() => setstakeButton2(true)}>Info</button>
+					<Popups trigger={stakeButton2} setTrigger={setstakeButton2}>
+						The number of days you want to lock your HEX, must be between 0 and 5556 days
+					</Popups>					<br></br>
 					<input className='bigger' type = 'number' max='5555' min='0' value={time} onChange={(e) => setTime(e.target.value)} placeholder='Days to Stake (1-5555 days)'/>
 				</p>
 
@@ -189,8 +197,10 @@ const fetchAddress = () => {
 
 				<p>
 					<label>User Address</label>
-					<Popup trigger={<Button>Info</Button>} content={"Always double check that your address is correct"} hoverable position="right center"/>
-					<br></br>
+					<button onClick={() => setstakeButton3(true)}>Info</button>
+					<Popups trigger={stakeButton3} setTrigger={setstakeButton3}>
+						The address where the HEX being staked is coming from (This should be your address!)
+					</Popups>					<br></br>
 					<input className='bigger' autoComplete='off' type="text" id="address" defaultValue={address} readOnly/>
 				</p>
 
