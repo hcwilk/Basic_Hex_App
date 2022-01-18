@@ -175,10 +175,10 @@ const fetchAddress = () => {
 					<label>HEX</label>
 					<button onClick={() => setstakeButton1(true)}>Info</button>
 					<Popups trigger={stakeButton1} setTrigger={setstakeButton1}>
-						Hearts to stake (must be less than {balance})
+						Hex to stake (must be less than {balance})
 					</Popups>
 					<br></br>
-					<input className='bigger' type = 'number' max={balance} min='0' placeholder={'HEX to Stake'} value={shares} onChange={(e) => setShares(e.target.value)}/>
+					<input className='bigger' type = 'number' max={balance} min='0' placeholder={'1-'+balance+' Hex'} value={shares} onChange={(e) => setShares(e.target.value)}/>
 				</p>
 
 
@@ -190,7 +190,7 @@ const fetchAddress = () => {
 					<Popups trigger={stakeButton2} setTrigger={setstakeButton2}>
 						The number of days you want to lock your HEX, must be between 0 and 5556 days
 					</Popups>					<br></br>
-					<input className='bigger' type = 'number' max='5555' min='0' value={time} onChange={(e) => setTime(e.target.value)} placeholder='Days to Stake (1-5555 days)'/>
+					<input className='bigger' type = 'number' max='5555' min='0' value={time} onChange={(e) => setTime(e.target.value)} placeholder='1-5555 days'/>
 				</p>
 
 				<br></br>
@@ -215,10 +215,10 @@ const fetchAddress = () => {
 			<form2>
 				<p> 
 					<br></br>
+					<text1> HEX Contract </text1> <input value={HexAddress} readOnly></input>
+					<br></br> <br></br>
 					<text1> User Address</text1> <input value={address} readOnly></input>
 					<br></br><br></br>
-					<text1> HEX Address</text1> <input value={HexAddress} readOnly></input>
-					<br></br> <br></br>
 					<text1> HEX to Stake</text1> <input value={shares/1} readOnly></input>
 					<br></br> <br></br>
 					<text1> Days to Stake</text1> <input value={time/1} readOnly></input>
