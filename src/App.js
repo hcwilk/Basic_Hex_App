@@ -212,16 +212,19 @@ const fetchAddress = () => {
 		</div>
 
 		<div className='inputBox'>
-			<p> 
-				<text1> User Address</text1> <input className='smaller' value={address} readOnly></input>
-				<br></br> <br></br>
-				<text1> HEX Address</text1> <input value={HexAddress} readOnly></input>
-				<br></br> <br></br>
-				<text1> HEX to Stake</text1> <input value={shares/1} readOnly></input>
-				<br></br> <br></br>
-				<text1> Days to Stake</text1> <input value={time/1} readOnly></input>
-				<br></br> <br></br>
-			</p>
+			<form2>
+				<p> 
+					<br></br>
+					<text1> User Address</text1> <input value={address} readOnly></input>
+					<br></br><br></br>
+					<text1> HEX Address</text1> <input value={HexAddress} readOnly></input>
+					<br></br> <br></br>
+					<text1> HEX to Stake</text1> <input value={shares/1} readOnly></input>
+					<br></br> <br></br>
+					<text1> Days to Stake</text1> <input value={time/1} readOnly></input>
+					<br></br> <br></br>
+				</p>
+			</form2>
 		</div>
 		
 		<h2>
