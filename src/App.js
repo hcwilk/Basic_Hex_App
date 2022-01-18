@@ -52,7 +52,8 @@ useEffect(() => {
 }, [stakes]) // eslint-disable-line react-hooks/exhaustive-deps
 
 const startStake = () => {
-	stakeHex(shares/1,time/1)
+	setButton(false);
+	stakeHex(shares*100000000/1,time/1)
 		.then((result) => {
 			console.log(result);
 		})
