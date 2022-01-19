@@ -288,7 +288,7 @@ const fetchAddress = () => {
 				{stake.stakeId}
 			</td>
 			<td>
-				{stake.stakedHearts}
+				{stake.stakedHearts/100000000}
 			</td>
 			<td>
 				{stake.stakedDays}
