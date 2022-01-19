@@ -28,7 +28,7 @@ function App() {
 useEffect(() => {
   init()
   fetchHexBalance()
-  fetchStakes()
+//   fetchStakes()
   fetchAddress()
   
 }, [])
@@ -68,15 +68,15 @@ const fetchAddress = () => {
 
 
 
-	const fetchStakes = () => {
-		getStakes()
-		.then((stakes) => {
-			setStakes(stakes);
-		})
-		.catch((err) => {
-			console.log(err);
-		})
-	};
+	// const fetchStakes = () => {
+	// 	getStakes()
+	// 	.then((stakes) => {
+	// 		setStakes(stakes);
+	// 	})
+	// 	.catch((err) => {
+	// 		console.log(err);
+	// 	})
+	// };
 		const handleSubmit = (e) => {
 		  e.preventDefault();
 		}
