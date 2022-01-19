@@ -1,10 +1,9 @@
 import './App.css';
 import React, {useEffect, useState} from 'react'
-import { init , getOwnBalance, getStakes, addy, whole_stake, stakeHex, endStake} from './ERC20';
+import { init , getOwnBalance, getStakes, addy, whole_stake, stakeHex} from './ERC20';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import { HexAddress } from './config';
-import {Table} from 'react-bootstrap'
 import Popups from './Components/Popups'
 import Tables from './Components/Table'
 
@@ -136,20 +135,7 @@ const fetchAddress = () => {
 		else{
 			has_Stakes = false;
 		}
-
-		
-
-
-
-		// var d=new Date();
-		// console.log(d.getTime()/(1000*60*60*24));
-		// var date = new Date(dec1_miliseconds)
-		// console.log("december please", date)
-
-
-
-		
-		
+	
 		
 		
 		return <>
