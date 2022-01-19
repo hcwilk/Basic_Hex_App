@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useEffect, useState} from 'react'
-import { init , getOwnBalance, getStakes, addy, stakeHex} from './ERC20';
+import { init , getOwnBalance, addy, stakeHex} from './ERC20';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import { HexAddress } from './config';
