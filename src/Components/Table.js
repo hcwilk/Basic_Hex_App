@@ -6,7 +6,7 @@ import {Table} from 'react-bootstrap'
 
 
 function Tables() {
-	const [list_of_stakes, setlist_of_stakes] = useState([]);
+	const [list_of_stakes] = useState([]);
 	var dec1_miliseconds = 18232*60*60*24*1000;
 	
 	const dates = (miliseconds) => {

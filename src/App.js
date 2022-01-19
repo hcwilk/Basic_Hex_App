@@ -1,6 +1,6 @@
 import './App.css';
 import React, {useEffect, useState} from 'react'
-import { init , getOwnBalance, getStakes, addy, whole_stake, stakeHex} from './ERC20';
+import { init , getOwnBalance, getStakes, addy, stakeHex} from './ERC20';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import { HexAddress } from './config';
@@ -13,7 +13,7 @@ import Tables from './Components/Table'
 // you already know that literally all of the code possible is going to go in this doc
 function App() {
 	const [balance, setBalance] = useState(null);
-  	const [stakes, setStakes] = useState(null);
+  	// const [stakes, setStakes] = useState(null);
   	const [address, setAddress] = useState(null);
 	const [shares, setShares] = useState('');
 	const [time, setTime] = useState('');
@@ -22,7 +22,6 @@ function App() {
 	const [stakeButton2, setstakeButton2] = useState(false)
 	const [stakeButton3, setstakeButton3] = useState(false)
 
-	const [list_of_stakes] = useState([]);
 
 
 
