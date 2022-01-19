@@ -6,7 +6,7 @@ import {Table} from 'react-bootstrap'
 
 
 function Tables() {
-	const [list_of_stakes] = useState([]);
+	const [list_of_stakes, setlist_of_stakes] = useState([]);
 	var dec1_miliseconds = 18232*60*60*24*1000;
 	
 	const dates = (miliseconds) => {
@@ -15,13 +15,29 @@ function Tables() {
 	}
 
 	  useEffect(() => {
-		for (var i = 0; i < 100
+		//   setlist_of_stakes([]);
+		for (var i = 0; i < 10
 			; i++) {
 			whole_stake(i)
 			.then((stake) => {
 				list_of_stakes.push(stake);
-				console.log("two???")})};
-	  })
+				console.log("two???");}
+				)
+				.catch((err) => {
+					console.log(err);
+				});
+			
+			
+			
+			};
+				
+
+	  },[])// eslint-disable-line react-hooks/exhaustive-deps
+
+
+
+
+	  
 
     return  (<>
        <Table striped bordered hover>

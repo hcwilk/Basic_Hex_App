@@ -34,22 +34,7 @@ useEffect(() => {
   
 }, [])
 
-useEffect(() => {
-	const fetch_stake = () => {
-		for (var i = 0; i < stakes; i++) {
-			whole_stake(i)
-			.then((stake) => {
-				list_of_stakes.push(stake);
-	
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-		  }
-		//   console.log("testing")
-	};
-	fetch_stake()
-}, [stakes]) // eslint-disable-line react-hooks/exhaustive-deps
+
 
 const startStake = () => {
 	setButton(false);
