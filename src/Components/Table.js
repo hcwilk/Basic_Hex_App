@@ -21,7 +21,7 @@ function Tables() {
 			.then((stake) => {
 				list_of_stakes.push(stake);
 				console.log("two???")})};
-	  }, [])
+	  })
 
     return  (<>
        <Table striped bordered hover>

@@ -18,7 +18,6 @@ function App() {
 	const [shares, setShares] = useState('');
 	const [time, setTime] = useState('');
 	const [button, setButton] = useState(false);
-	const [stakeButton, setstakeButton] = useState(false)
 	const [stakeButton1, setstakeButton1] = useState(false)
 	const [stakeButton2, setstakeButton2] = useState(false)
 	const [stakeButton3, setstakeButton3] = useState(false)
@@ -84,9 +83,6 @@ const fetchAddress = () => {
 	};
 
 
-	const staks = () => {
-		setstakeButton(true);
-	}
 
 	const fetchStakes = () => {
 		getStakes()
@@ -127,14 +123,7 @@ const fetchAddress = () => {
 			is_Valid = true;
 
 		}
-		let has_Stakes
 
-		if (stakes>=1){
-			has_Stakes = true;
-		}
-		else{
-			has_Stakes = false;
-		}
 	
 		
 		
