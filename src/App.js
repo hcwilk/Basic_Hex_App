@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import { HexAddress } from './config';
 import {Table} from 'react-bootstrap'
 import Popups from './Components/Popups'
+import Tables from './Components/Table'
+
 
 
 
@@ -135,7 +137,8 @@ const fetchAddress = () => {
 			has_Stakes = false;
 		}
 
-		var dec1_miliseconds = 18232*60*60*24*1000;
+		
+
 
 
 		// var d=new Date();
@@ -144,10 +147,6 @@ const fetchAddress = () => {
 		// console.log("december please", date)
 
 
-		const dates = (miliseconds) => {
-			var date = new Date(miliseconds);
-			return (date.getMonth()+1)+"/"+date.getDate()+"/"+date.getFullYear();
-		}
 
 		
 		
@@ -259,70 +258,22 @@ const fetchAddress = () => {
 			}
 		</Popups>
 
-		<Popups trigger = {stakeButton} setTrigger = {setstakeButton}>
+		<Tables>
+			
+		</Tables>
+
+
+
+		{/* <Popups trigger = {stakeButton} setTrigger = {setstakeButton}> */}
 		
-		{ has_Stakes?
-		<Table striped bordered hover>
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>Stake Id</th>
-				<th>HEX Staked</th>
-				<th>Staked Days</th>
-				<th>Start Date</th>
-				<th>End Date</th>
-				<th>End Stake</th>
-			</tr>
-		</thead>
-		<tbody>
-			
-			
-			{list_of_stakes.sort((a, b) => a.stakeId > b.stakeId ? 1:-1).map((stake, index) => ( 
-			<> 
-			<tr>
-
-			<td>
-			{index}
-			</td>
-			<td>
-				{stake.stakeId}
-			</td>
-			<td>
-				{stake.stakedHearts/100000000}
-			</td>
-			<td>
-				{stake.stakedDays}
-			</td>
-			<td>
-				{dates(dec1_miliseconds+(stake.lockedDay)*24*60*60*1000)}
-				{}
-
-			</td>
-			<td>
-				{dates(dec1_miliseconds+(+stake.lockedDay + +stake.stakedDays)*24*60*60*1000)}
-			</td>
-
-			<button onClick={() => 
-				endStake(index,stake.stakeId)
-				}>
-				End Stake
-			</button>
-			</tr>
-
-			</>)
-		)}
-			
-		</tbody>
-	</Table>:
-
-	<div> You currently don't have any stakes! </div>
 		
-		}
+		
+	
 			
 		
-		</Popups>
+		{/* </Popups>
 	<button className='stakes-button' onClick={staks}>
-		Stakes</button>
+		Stakes</button> */}
 		</>
 	  };
 
