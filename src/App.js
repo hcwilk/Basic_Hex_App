@@ -13,7 +13,7 @@ import Tables from './Components/Table'
 // you already know that literally all of the code possible is going to go in this doc
 function App() {
 	const [balance, setBalance] = useState(null);
-  	// const [stakes, setStakes] = useState(null);
+		// const [stakes, setStakes] = useState(null);
   	const [address, setAddress] = useState(null);
 	const [shares, setShares] = useState('');
 	const [time, setTime] = useState('');

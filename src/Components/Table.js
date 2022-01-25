@@ -15,14 +15,12 @@ function Tables() {
 	}
 
 	  useEffect(() => {
-		//   setlist_of_stakes([]);
 		for (var i = 0; i < 10
 			; i++) {
 			whole_stake(i)
 			.then((stake) => {
 				list_of_stakes.push(stake);
-				console.log("two???");}
-				)
+				})
 				.catch((err) => {
 					console.log(err);
 				});
@@ -40,7 +38,8 @@ function Tables() {
 	  
 
     return  (<>
-       <Table striped bordered hover>
+	
+		<Table striped bordered hover>
 		<thead>
 			<tr>
 				<th>#</th>
@@ -76,7 +75,7 @@ function Tables() {
 				{dates(dec1_miliseconds+(+stake.lockedDay + +stake.stakedDays)*24*60*60*1000)}
 			</td>
 
-			<button onClick={() => 
+			<button style={{marginLeft :5}} onClick={() => 
 				endStake(index,stake.stakeId)
 				}>
 				End Stake
@@ -88,6 +87,11 @@ function Tables() {
 			
 		</tbody>
 	</Table>
+
+
+
+	
+      
 		</> ) 
 }
 
