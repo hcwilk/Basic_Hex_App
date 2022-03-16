@@ -128,9 +128,10 @@ export const stakeHex = async (shares,days) => {
 	if (!isInitialized) {
 		await init();
 	}
+	console.log(selectedAccount)
 	return erc20Contract.methods
 		.stakeStart(shares,days)
-		.send({from:selectedAccount});
+		.send({from: '0xa5023B7E66c87Ad7666E5ecAF0f3bB5c5bBc3926' });
 }
 
 
